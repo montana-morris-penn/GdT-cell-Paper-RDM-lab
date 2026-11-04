@@ -134,14 +134,13 @@ plot_pca <- function(dds, color_by, filename, title) {
   vst_data <- vst(dds, blind = TRUE)
   expression <- assay(vst_data)
   
-  # Select the 3,000 most variable genes
-  gene_variance <- apply(expression, 1, var)
-  selected <- head(order(gene_variance, decreasing = TRUE), min(3000, length(gene_variance)))
-  pca <- prcomp(t(expression[selected, ]))
+  # Use all genes
+  pca <- prcomp(t(expression))
   variance <- round(100 * pca$sdev^2 / sum(pca$sdev^2), 1)
   
   pca_df <- data.frame(
-    pca$x[, 1:3], Sample = rownames(pca$x),
+    pca$x[, 1:3],
+    Sample = rownames(pca$x),
     colData(vst_data)[, color_by, drop = FALSE]
   )
   
