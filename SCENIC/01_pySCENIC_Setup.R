@@ -6,21 +6,19 @@ library(SeuratObject)
 library(SeuratDisk)
 library(SCopeLoomR)
 
-
-seurat.rna <- readRDS('/mnt/isilon/tan_lab/sussmanj/GIST_Multiome/GD_TCells/merged_gdt_res1.rds')
+setwd("/mnt/isilon/tan_lab/sussmanj/GIST_Multiome/GD_TCells")
+seurat.rna <- readRDS('GDT_All_Processed_Revised13_GDT_QC_Integrated.RDS')
 DefaultAssay(seurat.rna) <- "RNA"
 seurat.rna = JoinLayers(seurat.rna)
 seurat.rna = NormalizeData(seurat.rna)
 
-
-DimPlot(seurat.rna, group.by = "condition") + coord_fixed()
-FeaturePlot(seurat.rna, features = c("TRDV1", "TRDV2"), reduction = "umap")
+DimPlot(seurat.rna, group.by = "Source") + coord_fixed()
+FeaturePlot(seurat.rna, features = c("TRDV1", "TRDV2"), reduction = "umap.rpca", order = T) & coord_fixed()
 
 dgem <- GetAssayData(seurat.rna, assay = "RNA", layer = "counts")
 dim(dgem)
 cellnames = colnames(dgem)
 
-DimPlot(seurat.rna, cells = cellnames) + coord_fixed()
 DimPlot(seurat.rna, cells = cellnames, reduction = "umap.rpca") + coord_fixed()
 
 #############################
@@ -38,7 +36,7 @@ filtered_dgem <- filtered_dgem[-idx, ]
 dim(filtered_dgem) 
 
 ####Using filtered genes from above
-file.name <- "Combined_pySCENIC_RNA_Filtered.loom"
+file.name <- "Combined_pySCENIC_RNA_Filtered_Revision.loom"
 project.title <- "GDT"
 build_loom(
   file.name = file.name,
