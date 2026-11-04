@@ -1,0 +1,16 @@
+R version 4.5.3 (2026-03-11)
+Kernel: datascience-r (R (datascience))
+WSL: Ubuntu-24.04
+Interpreter: /home/yuntianf/softwares/miniconda3/envs/datascience/bin/R
+
+Observed package versions (already installed in datascience):
+IRkernel == 1.3.2
+dplyr == 1.2.1
+tidyr == 1.3.2
+ggplot2 == 4.0.3
+ggalluvial == 0.12.6
+treemapify == 2.6.1
+patchwork == 1.3.2
+jsonlite == 2.0.0
+digest == 0.6.39
+ragg == 1.5.2
