@@ -1,8 +1,8 @@
-# Single-cell profiling reveals γδ T-cell heterogeneity associated with prognosis and imatinib resistance in human GIST
+# γδ T Cell Single-cell Profiling Reveals Distinct Subsets Associated with Prognosis and Resistance in GIST
 
 Analysis code accompanying the manuscript:
 
-> Zeng S\*, Sussman JH\*, Morris M\*, Fu Y, Perez JE, Rong J, Tardy K, Kwak H, Hartlein T, Liu S, Do K, Rossi F, Zhang JQ, Xu X, DeMatteo RP. **Single-cell profiling reveals γδ T-cell heterogeneity associated with prognosis and imatinib resistance in human GIST.** *(Under revision, Nature Communications.)*
+> Zeng S\*, Sussman JH\*, Morris MT\*, Fu Y, Perez JE, Rong J, Tardy K, Kwak H, Hartlein T, Liu S, Do K, Rossi F, Zhang JQ, Xu X, DeMatteo RP. **γδ T Cell Single-cell Profiling Reveals Distinct Subsets Associated with Prognosis and Resistance in GIST.** *(Under revision, Nature Communications.)*
 >
 > \*Equal contribution
 
@@ -13,7 +13,7 @@ Analysis code accompanying the manuscript:
 
 ## Abstract
 
-Gamma-delta (γδ) T cells are emerging effectors of anti-tumor immunity, but their role in gastrointestinal stromal tumor (GIST), the most common human sarcoma, remains poorly defined. We integrated single-cell RNA-sequencing (scRNA-seq), T cell receptor profiling, immunophenotyping, and functional assays to characterize circulating and intratumoral γδ T cells. We constructed a scRNA-seq atlas of γδ T cells from 11 patients and identified 14 transcriptomic clusters spanning heterogeneous differentiation and activation states. Intratumoral γδ T cells, and Vδ1+ cells, were enriched in immunomodulatory signatures and effector phenotypes. Vδ1+ cells predominated within tumors and their frequency within the γδ T cell compartment correlated with favorable prognostic features. Expanded γδ T cells from healthy donors and GIST tumors were cytotoxic *ex vivo* via the MICA-NKG2D axis. Compared with untreated tumors, imatinib-resistant tumors exhibited a shift toward Vδ2+ cells, altered metabolic signatures, and reduced effector-associated features. In a genetically engineered murine GIST model, PD-L1 blockade enhanced imatinib efficacy and restored tumor γδ T cell interferon and IL17 activity. Together, these findings characterize γδ T cell states in human GIST and identify associations with tumor prognosis and imatinib resistance, supporting further investigation of γδ T cells as potential immunotherapy targets.
+Gamma-delta (γδ) T cells are emerging effectors of anti-tumor immunity, but their role in gastrointestinal stromal tumor (GIST) remains poorly defined. We integrated single-cell RNA sequencing (scRNA-seq), T cell receptor profiling, immunophenotyping, and functional assays to characterize circulating and intratumoral γδ T cells across samples from 51 patients. We constructed a scRNA-seq atlas of γδ T cells from 11 patients and identified 14 transcriptomic clusters spanning heterogeneous differentiation and activation states. Intratumoral γδ T cells, particularly Vδ1+ cells, were enriched for cytotoxic signatures and effector phenotypes, whereas Vδ2+ cells showed evidence of cellular stress. Vδ1+ cells predominated within tumors and their abundance within the γδ T cell compartment correlated with favorable predicted recurrence-free survival. Expanded γδ T cells from blood and GIST tumors were cytotoxic ex vivo. Compared with untreated tumors, γδ T cells from imatinib-resistant tumors exhibited a higher proportion of Vδ2+ cells, altered metabolic signatures, increased stress markers, and reduced effector-associated features. In a genetically engineered murine GIST model, PD-L1 blockade enhanced imatinib efficacy and restored tumor γδ T cell interferon production. Together, these findings characterize γδ T cell states in human GIST and support a potential role for γδ T cells in the immunotherapy of GIST.
 
 **Keywords:** γδ T cells, Vδ1 T cells, single-cell transcriptomics, T cell receptor (TCR) repertoire, gastrointestinal stromal tumor, tumor immunity
 
@@ -21,7 +21,7 @@ Gamma-delta (γδ) T cells are emerging effectors of anti-tumor immunity, but th
 
 ## Repository overview
 
-This repository contains the code used for the computational analyses in the paper: processing of the human γδ T cell scRNA-seq data, atlas construction and annotation, differential expression and pathway analyses, transcription factor regulon inference, TCR repertoire analysis, and analysis of the murine bulk RNA-seq data.
+This repository contains the code used for the computational analyses in the paper: processing of the human γδ T cell scRNA-seq data, atlas construction and annotation, differential expression and pathway analyses, transcription factor regulon inference, TCR repertoire analysis, murine bulk RNA-seq data and signature-score survival analysis.
 
 Scripts are numbered in the order they are intended to be run.
 
@@ -36,6 +36,7 @@ Scripts are numbered in the order they are intended to be run.
 ├── 07_DESeq2_Pseudobulk_Comparisons.R               # Pseudobulk DESeq2 (+ fgsea) comparisons
 ├── 08_GLMM_Pseudobulk_Comparisons_and_Signatures.R  # limma-voom/dream mixed models (Vδ1 vs Vδ2) and gene signature scores
 ├── 09_Murine_GDT_RNAseq.R                           # Bulk RNA-seq of sorted murine γδ T cells (vehicle vs imatinib)
+├── 10_Signature_Survival.R                          # Observed RFS Analysis of γδ T cell signature from GSE8167
 ├── SCENIC/                                          # pySCENIC workflow files
 └── TCR_Analysis/                                    # TCRδ repertoire (ImmunoSEQ) analysis
 ```
@@ -67,7 +68,7 @@ The survival analysis in the paper uses a previously published RNA microarray da
 6. **Pseudobulk comparisons (`07`, `08`).** Counts were aggregated per sample and analyzed with DESeq2 (PBMC vs tumor; untreated vs imatinib-resistant), followed by pre-ranked GSEA with fgsea using MSigDB Hallmark and Reactome collections and KEGG. Vδ1-predominant vs Vδ2-predominant clusters were compared with a mixed-model framework (limma-voom with dream, sample as a random effect). Gene signature scores were computed from robust z-scores.
 7. **TCR repertoire (`TCR_Analysis/`).** TCRδ CDR3 repertoires from sorted PBMC and tumor γδ T cells were analyzed for clonal expansion, repertoire diversity, and V-gene usage, including repeated downsampling to equal depth.
 8. **Murine RNA-seq (`09`).** Bulk RNA-seq from sorted tumor γδ T cells of *Kit*^V558del/+^ mice treated with vehicle or imatinib was analyzed with DESeq2 and fgsea (reads aligned to mm10 with STAR and quantified with featureCounts).
-
+9. **Observed Survival Analysis (`09`).** Robust Z-scoring of a validated δ T cell signature was applied to a previously published cohort of 32 untreated primary GISTs. For recurrence-free survival analysis, the score was median stratified for a Kaplan-Meier curve, and univariate Cox proportional-hazard analysis was used. 
 ---
 
 ## Software and versions
@@ -83,7 +84,7 @@ Versions reported in the manuscript:
 | DESeq2 | 1.50.2 |
 | pySCENIC | see `SCENIC/` (cisTarget human v9 motif collection) |
 
-Other packages used include `apeglm`, `fgsea`, `propeller`, `limma`/`variancePartition` (dream), `clusterProfiler`, `SCopeLoomR`, CytoTRACE, and `survival`. Please check the individual scripts for the full list of `library()` calls and any version-specific notes.
+Other packages used include `apeglm`, `fgsea`, `propeller`, `limma`/`variancePartition` (dream), `clusterProfiler`, `SCopeLoomR`, CytoTRACE,`survminer` and `survival`. Please check the individual scripts for the full list of `library()` calls and any version-specific notes.
 
 ---
 
@@ -111,7 +112,7 @@ To skip the preprocessing steps (`01`–`03`), you can start from the Seurat obj
 
 If you use this code or data, please cite:
 
-> Zeng S, Sussman JH, Morris M, et al. Single-cell profiling reveals γδ T-cell heterogeneity associated with prognosis and imatinib resistance in human GIST. *Nature Communications* (in revision). \[DOI to be added upon publication\]
+> Zeng S, Sussman JH, Morris M, et al. γδ T Cell Single-cell Profiling Reveals Distinct Subsets Associated with Prognosis and Resistance in GIST. *Nature Communications* (in revision). \[DOI to be added upon publication\]
 
 ---
 
