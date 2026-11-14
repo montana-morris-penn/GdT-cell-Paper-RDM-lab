@@ -1,8 +1,8 @@
-# γδ T Cell Single-cell Profiling Reveals Distinct Subsets Associated with Prognosis and Resistance in GIST
+# γδ T cell single-cell profiling reveals distinct subsets associated with prognosis and resistance in GIST
 
 Analysis code accompanying the manuscript:
 
-> Zeng S\*, Sussman JH\*, Morris MT\*, Fu Y, Perez JE, Rong J, Tardy K, Kwak H, Hartlein T, Liu S, Do K, Rossi F, Zhang JQ, Xu X, DeMatteo RP. **γδ T Cell Single-cell Profiling Reveals Distinct Subsets Associated with Prognosis and Resistance in GIST.** *(Under revision, Nature Communications.)*
+> Zeng S\*, Sussman JH\*, Morris MT\*, Fu Y, Perez JE, Rong J, Tardy K, Kwak H, Hartlein T, Liu S, Do K, Rossi F, Zhang JQ, Xu X, DeMatteo RP. **γδ T cell single-cell profiling reveals distinct subsets associated with prognosis and resistance in GIST.** *(Under revision, Nature Communications.)*
 >
 > \*Equal contribution
 
@@ -112,7 +112,7 @@ To skip the preprocessing steps (`01`–`03`), you can start from the Seurat obj
 
 If you use this code or data, please cite:
 
-> Zeng S, Sussman JH, Morris M, et al. γδ T Cell Single-cell Profiling Reveals Distinct Subsets Associated with Prognosis and Resistance in GIST. *Nature Communications* (in revision). \[DOI to be added upon publication\]
+> Zeng S, Sussman JH, Morris M, et al. γδ T cell single-cell profiling reveals distinct subsets associated with prognosis and resistance in GIST. *Nature Communications* (in revision). \[DOI to be added upon publication\]
 
 ---
 
