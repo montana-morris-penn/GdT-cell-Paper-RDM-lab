@@ -121,5 +121,4 @@ If you use this code or data, please cite:
 For questions about the code, please open a GitHub issue or contact the authors. For correspondence about the paper, contact Ronald P. DeMatteo (ronald.dematteo@pennmedicine.upenn.edu), Department of Surgery, Perelman School of Medicine, University of Pennsylvania, 3400 Spruce Street, Philadelphia, PA 19104.
 
 ## License
-
-\[Add a license here, e.g. MIT or GPL-3.0, and include a `LICENSE` file in the repository.\]
+MIT
